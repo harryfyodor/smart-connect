@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>模拟基站</title>
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+		crossorigin="anonymous">
+	<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+	<h1>模拟基站</h1>
+	<div class="main">
+		<div>
+			<section class="clearfix">
+				<div class="clearfix">
+					<div class="clearfix"> 					
+						<h3>初始化设置</h3> 				
+					</div>
+				</div>
+				<ol>
+					<li>在一个终端启动<code>transceiver</code>;</li>
+					<li>在另一个终端启动<code>openbts主进程</code>;</li>
+					<li>在另一个终端启动短信服务<code>smqueue</code>;</li>
+					<li>在另一个终端启动鉴权服务<code>sipauthserve</code>;</li>
+					<li>在另一个终端启动<code>asterisk vvvc</code>;</li>
+					<li>在另一个终端启动<code>asterisk r</code>;</li>
+					<li>在另一个终端启动控制台</li>
+				</ol>
+				<button id="init" class="btn btn-default">初始化</button>
+			</section>
+			<section class="clearfix">
+				<div class="clearfix"> 					
+					<h3>Openbts参数配置</h3> 				
+				</div>
+				<form action="" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">天线功率</label>
+						<div class="controls col-sm-5">
+							<input id="setting-power" type="text" class="form-control" placeholder="例如：18">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">频段</label>
+						<div class="controls col-sm-5">
+							<input id="setting-freqency-range" type="text" class="form-control" placeholder="例如：900">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">欢迎信息</label>
+						<div class="controls col-sm-5">
+							<input id="setting-welcome" type="text" class="form-control" placeholder="例如：testsms">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">基站名字</label>
+						<div class="controls col-sm-5">
+							<input id="setting-name" type="text" class="form-control" placeholder="例如：BTSrun">
+						</div>
+					</div>
+				</form>
+				<button id="setting" class="btn btn-default disabled" disabled>确定</button>
+			</section>
+			<section class="clearfix">
+				<div class="clearfix"> 					
+					<h3>添加新用户</h3> 				
+				</div>
+				<form action="" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">手机名称</label>
+						<div class="controls col-sm-5">
+							<input id="add-phone" type="text" class="form-control" placeholder="例如：LG G3">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">编码</label>
+						<div class="controls col-sm-5">
+							<input id="add-code-1" type="text" class="form-control" placeholder="例如：IMSI46001658*****19">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">编码</label>
+						<div class="controls col-sm-5">
+							<input id="add-code-2" type="text" class="form-control" placeholder="例如：123456">
+						</div>
+					</div>
+				</form>
+				<button id="add-new-user" class="btn btn-default disabled" disabled>添加</button>
+			</section>
+			<section class="clearfix">
+				<div> 					
+					<h3>查看用户信息</h3> 				
+				</div>
+				<button id="watch-users" class="btn btn-default disabled" disabled>确定</button>
+			</section>
+			<section class="clearfix">
+				<div>
+					<h3>在控制台查看已经加入的设备</h3> 				
+				</div>
+				<button id="watch-devices" class="btn btn-default disabled" disabled>确定</button>
+			</section>
+			<section class="clearfix">
+				<div class="clearfix"> 					
+					<h3>发送短信</h3>
+				</div>
+				<form action="" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">编码</label>
+						<div class="controls col-sm-5">
+							<input id="msg-code-1" type="text" class="form-control" placeholder="例如：46001658*****19 888888">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">编码</label>
+						<div class="controls col-sm-5">
+							<input id="msg-code-2" type="text" class="form-control" placeholder="例如：888888">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">短信内容</label>
+						<div class="controls col-sm-5">
+							<input id="msg-content" type="text" class="form-control" placeholder="例如：Hello World">
+						</div>
+					</div>
+				</form>
+				<button id="send-msg" class="btn btn-default disabled" disabled>发送</button>
+			</section>
+			<section class="clearfix">
+				<div> 					
+					<h3>停止</h3> 				
+				</div>
+				<button id="stop" class="btn btn-danger">停止</button>
+			</section>
+			<section class="clearfix">
+				<div>
+					<h3>输出扫频图像 <small><a target="_blank">点击右方生成之后点本链接</a></small></h3>
+				</div>
+				<button id="sweep-freq" class="btn btn-default">生成</button>
+			</section>
+			<section class="clearfix">
+				<div>
+					<h3>查看当前用户进程</h3>
+				</div>
+				<button id="watch-process" class="btn btn-default">查看</button>
+			</section>
+			<section class="clearfix">
+				<div class="clearfix"> 					
+					<h3>杀死进程</h3>
+				</div>
+				<form action="" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">PID</label>
+						<div class="controls col-sm-5">
+							<input id="kill-pid" type="text" class="form-control" placeholder="例如：19999">
+						</div>
+					</div>
+				</form>
+				<button id="kill-process" class="btn btn-danger btn-default">杀死</button>
+			</section>
+		</div>
+		<div class="log-container">
+			<h4>控制台输出</h4>
+			<textarea id="log-msg" cols="30" rows="9" disabled></textarea>
+		</div>
+		<div id="status"></div>
+	</div>
+	<footer></footer>
+	<script src="https://cdn.bootcss.com/socket.io/2.0.1/socket.io.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/index.js"></script>
+</body>
+</html>
